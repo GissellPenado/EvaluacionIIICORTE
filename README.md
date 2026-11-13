@@ -201,24 +201,7 @@ Se rechazan códigos y nombres vacíos, textos que exceden las longitudes permit
 
 Además de la comprobación previa de duplicados, la restricción UNIQUE de PostgreSQL protege la integridad ante escrituras concurrentes. Los fallos se comunican mediante Alert. Los mensajes de éxito se muestran después de confirmar la escritura; si solamente falla la actualización del listado, se informa esa situación por separado.
 
-## Verificación y evidencias
 
-Se comprobó la compilación con JDK 25, la conexión a PostgreSQL, el inicio de Hibernate y la ejecución de las consultas iniciales de tipos y equipos. Esto no acredita todavía las pruebas manuales de escritura, filtros y reinicio.
-
-La matriz de entrega debe registrar entrada, resultado esperado, resultado obtenido y evidencia real:
-
-| ID | Prueba | Resultado esperado | Estado de evidencia |
-| --- | --- | --- | --- |
-| P1 | Registrar equipo válido | Guardado y visible | Pendiente |
-| P2 | Intentar código duplicado | Rechazado, sin duplicados | Pendiente |
-| P3 | Editar nombre, estado o tipo | Cambios persistidos | Pendiente |
-| P4 | Eliminar con confirmación | Ausente en interfaz y PostgreSQL | Pendiente |
-| P5 | Buscar por nombre parcial | Solo coincidencias | Pendiente |
-| P6 | Filtrar por tipo y combinar búsqueda | Se cumplen ambos criterios | Pendiente |
-| P7 | Ingresar cantidad negativa | Dato rechazado | Pendiente |
-| P8 | Reiniciar aplicación | Persisten los datos confirmados | Pendiente |
-
-También está pendiente documentar una escritura que falle por una restricción de PostgreSQL y comprobar la ausencia de cambios parciales después del rollback. Un duplicado rechazado antes de `persist()` por la validación de la aplicación no demuestra por sí solo ese caso.
 
 ## Problemas frecuentes
 
@@ -228,7 +211,3 @@ También está pendiente documentar una escritura que falle por una restricción
 - **Error de conexión:** revisar servicio PostgreSQL, servidor, puerto, usuario y contraseña.
 - **Error de validación del esquema:** comprobar base seleccionada, esquema `catalogos`, nombres y tipos de columnas.
 - **module not found: jakarta.persistence:** recargar Maven y comprobar que las dependencias se hayan descargado.
-
-## Entrega
-
-Antes de entregar, incorporar el script SQL, completar las evidencias P1-P8 y la demostración de rollback, y publicar el repositorio accesible al docente sin credenciales locales.
